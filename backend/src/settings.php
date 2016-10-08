@@ -18,7 +18,15 @@ $c = [
     ],
 ];
 
-
+/**
+ * @SWG\Definition(
+ * 	    definition="Error",
+ * 		required={"status", "error", "message"},
+ *		@SWG\Property(property="status", type="integer"),
+ *		@SWG\Property(property="error", type="boolean"),
+ *		@SWG\Property(property="msg", type="string"),
+ * 	 )
+*/
 $c['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
         $data = [
