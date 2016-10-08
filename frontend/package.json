@@ -1,0 +1,26 @@
+{
+  "name": "iotresearchformsite",
+  "version": "1.0.0",
+  "description": "A simple web form for Professor Hua's IoT Security Research",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EPICmynamesBG/IoTResearchFormSite.git"
+  },
+  "keywords": [
+    "iot"
+  ],
+  "author": "Brandon Groff",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EPICmynamesBG/IoTResearchFormSite/issues"
+  },
+  "homepage": "https://github.com/EPICmynamesBG/IoTResearchFormSite#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-grid": "^3.2.9"
+  }
+}
