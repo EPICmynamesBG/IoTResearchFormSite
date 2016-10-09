@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>IoT Security</title>
 
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--  StyleSheets  -->
     <link href="./node_modules/materialize-css/dist/css/materialize.css" rel="stylesheet" />
     <link href="./node_modules/angular-ui-grid/ui-grid.css" rel="stylesheet" />
@@ -14,22 +16,24 @@
     <link href="./styles/inputForm.css" rel="stylesheet" />
 
     <!--  Source Files  -->
+    <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./node_modules/materialize-css/dist/js/materialize.js" type="text/javascript"></script>
     <script src="./node_modules/angular/angular.js" type="text/javascript"></script>
     <script src="./node_modules/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script>
     <script src="./node_modules/angular-ui-grid/ui-grid.js" type="text/javascript"></script>
-    
-    
+
+
     <!--  App Files -->
     <script src="./scripts/app.js" type="text/javascript"></script>
-    
+
     <script src="./scripts/directives/modal.js" type="text/javascript"></script>
     <script src="./scripts/directives/ngEnter.js" type="text/javascript"></script>
-    
+
     <script src="./scripts/factories/API.js" type="text/javascript"></script>
-    
+
     <script src="./scripts/controllers/InputFormController.js" type="text/javascript"></script>
     <script src="./scripts/controllers/SearchController.js" type="text/javascript"></script>
-    
+
 </head>
 
 <body>
@@ -37,10 +41,10 @@
         <div class="logo">
             <img src="./images/IoT.png" alt="IoT" />
         </div>
-        <div class="nav-button" ui-sref="form" ui-sref-active="current">
+        <div class="nav-button waves-effect waves-light btn" ui-sref="form" ui-sref-active="current">
             <a>Input Form</a>
         </div>
-        <div class="nav-button" ui-sref="search" ui-sref-active="current">
+        <div class="nav-button waves-effect waves-light btn" ui-sref="search" ui-sref-active="current">
             <a>Database Search</a>
         </div>
     </header>

@@ -29,8 +29,12 @@ button:focus {
     max-width: 500px;
 }
 
+p {
+    max-width: 650px;
+}
+
 header.nav {
-    position: absolute;
+    position: fixed;
     width: 100%;
     display: flex;
     flex-flow: row wrap;
@@ -41,7 +45,7 @@ header.nav {
     background-color: #0277bd;
     box-shadow: 0px 1px 1px 2px rgba(2, 136, 209, 0.3);
     padding: 5px;
-    z-index: 0;
+    z-index: 10;
 }
 
 .header-filler {
@@ -74,14 +78,15 @@ header.nav > .nav-button {
     max-width: 180px;
     min-width: 120px;
     height: 60px;
-    border-radius: 6px;
     margin: auto 5px;
     position: relative;
     transition: 0.2s;
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    color: #FFF;
 }
 
+/*
 header.nav > .nav-button:hover {
     background-color: rgba(255, 255, 255, 0.2);
     z-index: 2;
@@ -91,6 +96,7 @@ header.nav > .nav-button:hover {
 header.nav > .nav-button:active {
     box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.3);
 }
+*/
 
 header.nav > .nav-button > a {
     position: absolute;
@@ -103,7 +109,9 @@ header.nav > .nav-button > a {
     text-align: center;
     width: 100%;
     display: block;
-    transition-delay: box-shadow 0.1s;
+    transition: text-shadow 0.3s;
+    transition-delay: text-shadow 0.2s;
+    line-height: normal;
 }
 
 header.nav > .nav-button:hover > a {
@@ -134,5 +142,11 @@ header.nav > .nav-button.current {
 }
 
 div[ui-view] {
-    padding: 10px;
+    padding: 30px;
+}
+
+@media screen and (max-width: 550px) {
+    div[ui-view] {
+        padding: 10px;
+    }
 }

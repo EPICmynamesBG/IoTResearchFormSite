@@ -1,5 +1,13 @@
+*::-moz-placeholder {
+    color: #78909c;
+}
+
+*::-webkit-placeholder {
+    color: #78909c;
+}
+
 .input-block {
-    
+    margin-top: 25px;
 }
 
 .input-block:last-child {
@@ -10,22 +18,36 @@
     margin: 10px;
 }
 
-input[type="text"]:required:invalid {
+input[type="text"]:required:invalid,
+input[type="url"]:required:invalid,
+input[type="url"].ng-dirty:invalid,
+textarea:required:invalid {
     border-bottom-color: #b71c1c;
 }
 
-input[type="text"]:required:invalid:focus {
+input[type="text"]:required:invalid:focus,
+input[type="url"]:required:invalid:focus,
+input[type="url"].ng-dirty:invalid:focus,
+textarea:required:invalid:focus {
     border-bottom: 1px solid #b71c1c;
     box-shadow: 0 1px 0 0 #b71c1c;
 }
 
-input[type="text"]:valid {
-    border-bottom-color: #0e6252;
+input[type="text"]:valid,
+input[type="url"]:valid,
+textarea:valid {
+    border-bottom-color: #388e3c;
 }
 
-input[type="text"]:valid:focus {
-    border-bottom: 1px solid #0e6252;
-    box-shadow: 0 1px 0 0 #0e6252;
+input[type="text"]:valid:focus,
+input[type="url"]:valid:focus,
+textarea:valid:focus {
+    border-bottom: 1px solid #388e3c;
+    box-shadow: 0 1px 0 0 #388e3c;
+}
+
+textarea:focus {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 @media screen and (max-width: 550px) {
@@ -33,48 +55,6 @@ input[type="text"]:valid:focus {
         width: 100%;
     }
 }
-
-/*
-.custom-text-input {
-    margin: 40px 25px;
-    width: 100%;
-    display: block;
-    border: none;
-    padding: 10px 0;
-    border-bottom: solid 1px #66bb6a;
-    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #66bb6a 4%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #66bb6a 4%);
-    background-position: -100% 0;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    color: #0e6252;
-}
-
-.custom-text-input:focus {
-    background-position: 0 0;
-}
-
-.custom-text-input:focus::-webkit-input-placeholder {
-    color: #1abc9c;
-    font-size: 11px;
-    transform: translateY(-20px);
-    transition: 0.3s;
-    visibility: visible !important;
-}
-
-.custom-text-input:invalid {
-    border-bottom: solid 1px #e57373;
-    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #e57373 4%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #e57373 4%);
-    color: #f44336;
-}
-
-.custom-text-input:invalid:focus::-webkit-input-placeholder {
-    color: #f44336;
-}
-*/
 
 .required {
     color: #b71c1c;
@@ -86,6 +66,93 @@ input[type="text"]:valid:focus {
     font-size: 0.5em;
 }
 
-.textarea-label {
-    
+.input-block .category {
+    display: inline-block;
+    width: 50%;
+    max-width: 480px;
+}
+
+@media screen and (max-width: 650px) {
+    .input-block .category {
+        display: block;
+        width: 100%;
+    }
+}
+
+.input-block .category label {
+    color: #455a64;
+}
+
+
+/*  fix an issue with materialize using absolute */
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+    position: relative;
+}
+
+[type="checkbox"]:checked + label:before {
+    border-bottom-color: #388e3c;
+    border-right-color: #388e3c;
+}
+
+.input-block .category > .info-button {
+    margin-left: 4px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.input-block .category > .info-button:hover {
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.9);
+}
+
+.input-block .category > .info-button:active {
+    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.6);
+}
+
+.textarea-label {}
+
+textarea.materialize-textarea {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 2px;
+    padding: 5px;
+    min-height: 140px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+pre.cli {
+    margin: 7px;
+    display: block;
+    font-style: italic;
+}
+
+button.btn[type="reset"] {
+    background-color: #d32f2f;
+}
+
+button.btn[type="submit"] {
+    background-color: #388e3c;
+}
+
+.submission-area {
+    transition: 0.3s;
+}
+
+.submission-area > button {
+    transition: 0.3s;
+    margin: auto 10px;
+}
+
+@media screen and (max-width:550px) {
+    .submission-area {
+        height: 20px;
+    }
+    .submission-area > button:first-child {
+        float: left;
+    }
+    .submission-area > button:last-child {
+        float: right;
+    }
 }
