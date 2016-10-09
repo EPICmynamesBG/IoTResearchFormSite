@@ -21,6 +21,8 @@
   "homepage": "https://github.com/EPICmynamesBG/IoTResearchFormSite#readme",
   "dependencies": {
     "angular": "^1.5.8",
-    "angular-ui-grid": "^3.2.9"
+    "angular-ui-grid": "^3.2.9",
+    "angular-ui-router": "^0.3.1",
+    "materialize-css": "^0.97.7"
   }
 }

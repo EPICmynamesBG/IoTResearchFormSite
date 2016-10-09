@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IoT Security</title>
+
+    <!--  StyleSheets  -->
+    <link href="./node_modules/materialize-css/dist/css/materialize.css" rel="stylesheet" />
+    <link href="./node_modules/angular-ui-grid/ui-grid.css" rel="stylesheet" />
+    <link href="./styles/global.css" rel="stylesheet" />
+    <link href="./styles/modal.css" rel="stylesheet" />
+    <link href="./styles/inputForm.css" rel="stylesheet" />
+
+    <!--  Source Files  -->
+    <script src="./node_modules/angular/angular.js" type="text/javascript"></script>
+    <script src="./node_modules/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script>
+    <script src="./node_modules/angular-ui-grid/ui-grid.js" type="text/javascript"></script>
+    
+    
+    <!--  App Files -->
+    <script src="./scripts/app.js" type="text/javascript"></script>
+    
+    <script src="./scripts/directives/modal.js" type="text/javascript"></script>
+    <script src="./scripts/directives/ngEnter.js" type="text/javascript"></script>
+    
+    <script src="./scripts/factories/API.js" type="text/javascript"></script>
+    
+    <script src="./scripts/controllers/InputFormController.js" type="text/javascript"></script>
+    <script src="./scripts/controllers/SearchController.js" type="text/javascript"></script>
+    
+</head>
+
+<body>
+    <header class="nav">
+        <div class="logo">
+            <img src="./images/IoT.png" alt="IoT" />
+        </div>
+        <div class="nav-button" ui-sref="form" ui-sref-active="current">
+            <a>Input Form</a>
+        </div>
+        <div class="nav-button" ui-sref="search" ui-sref-active="current">
+            <a>Database Search</a>
+        </div>
+    </header>
+    <div class="header-filler"></div>
+    <div ui-view></div>
+</body>
+
+</html>

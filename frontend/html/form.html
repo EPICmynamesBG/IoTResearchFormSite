@@ -1,0 +1,44 @@
+<div id="body">
+    <form name="form">
+        <div class="input-block">
+            <h3>Investigator 1<span class="required">*</span></h3>
+            <input class="custom-text-input" type="text" name="user_1_first" ng-model="input.user_1.first_name" required="true" placeholder="First Name" />
+            <input class="custom-text-input" type="text" name="user_1_last" ng-model="input.user_1.last_name" required="true" placeholder="Last Name" />
+        </div>
+        <div class="input-block">
+            <h3>Investigator 2 <span class="optional">(Optional)</span>
+            </h3>
+            <input class="custom-text-input" type="text" name="user_2_first" ng-model="input.user_2.first_name" placeholder="First Name" />
+            <input class="custom-text-input" type="text" name="user_2_last" ng-model="input.user_2.last_name" placeholder="Last Name" />
+        </div>
+        <div class="input-block">
+            <h3>Device Info<span class="required">*</span></h3>
+            <input class="custom-text-input" type="text" name="device_man" ng-model="input.device.manufacturer" placeholder="Manufacturer" required="true" />
+            <input class="custom-text-input" type="text" name="device_model" ng-model="input.device.model" placeholder="Model" required="true" />
+            <input class="custom-text-input" type="text" name="device_version" ng-model="input.device.version" placeholder="Version" />
+            <input class="custom-text-input" type="text" name="device_year" ng-model="input.device.year_manufactured" placeholder="Year Manufactured" />
+        </div>
+        <div class="input-block">
+            <h3>OWASP Category<span class="required">*</span></h3>
+            <p class="category" ng-repeat="item in categories">
+                <input type="checkbox" class="filled-in" id="{{item.id}}" name="category[]" value="{{item.name}}" ng-checked="selection.indexOf(item) > -1" ng-click="toggleSelection(item)" title="{{item.id}}" />
+                <label for="{{item.id}}">{{item.name}}</label>
+                <button class="info-button"></button>
+            </p>
+        </div>
+        <div class="input-block">
+            <h3>Testing Tool<span class="required">*</span></h3>
+            <input class="custom-text-input" type="text" name="tool" ng-model="input.tool.name" placeholder="Testing Tool" required="true" />
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="toolParams" class="textarea-label">Tool Parameters</label>
+                    <textarea id="toolParams" class="materialize-textarea" required="true" ng-model="input.toolParams"></textarea>
+
+                </div>
+            </div>
+        </div>
+        <div class="input-block">
+
+        </div>
+    </form>
+</div>
