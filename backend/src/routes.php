@@ -9,3 +9,4 @@ $app->get('/', function ($request, $response, $args) {
 });
 
 require __DIR__ . "/routes/Observation.php";
+require __DIR__ . "/routes/Category.php";
