@@ -8,4 +8,4 @@ $app->get('/', function ($request, $response, $args) {
     return $response->withStatus(302)->withHeader("Location", "http://localhost:8888/backend/docs/index.html");
 });
 
-require __DIR__ . "/routes/observation.php";
+require __DIR__ . "/routes/Observation.php";

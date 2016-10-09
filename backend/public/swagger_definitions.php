@@ -43,16 +43,3 @@
  *      )
  * 	 )
  */
-
-/**
- *
- * @SWG\Parameter(
- * 	    name="isbn",
- *      in="path",
- *      description="a Book ISBN",
- * 		required=true,
- *		type="string",
- *      default="1-2222-3333-4"
- * 	 )
- *
-*/

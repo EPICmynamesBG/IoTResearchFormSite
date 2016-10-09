@@ -36,30 +36,31 @@ class Tool {
         
         $tool_id = $db->insert("Tool", $toolArr);
         
+        if (!$tool_id || $tool_id == 0){
+            throw new Exception("Tool insert error", 500);
+        }
+        
         return Tool::getById($tool_id);
     }
     
-    public static function findOrCreate($toolName) {
-        if (!isset($toolName)){
+    public static function findOrCreate($tool) {
+        if (!isset($tool['name'])){
             throw new Exception("Missing requried field: Tool::name", 400);
         }
         
         $db = DB::getInstance();
         $results = $db->select('Tool','*',[
-            'Name' => $toolName
+            'Name' => $tool['name']
         ]);
         
-        $tool = null;
         if (sizeof($results) != 1 || !$results){
-            $tool = Tool::create($toolName);
-        } else {
-            $tool = new Tool($results[0]);
+            if (sizeof($results) > 1){
+                throw new Exception("Multiple tools with given name exist", 500);
+            }
+            return Tool::create($tool['name']);
         }
         
-        if ($tool == null){
-            throw new Exception("An error occured finding/creating the tool", 500);
-        }
-        return $tool;
+        return new Tool($results[0]);
     }
     
 //    public static function search($text) {
@@ -92,7 +93,7 @@ class Tool {
         ]);
         
         if (sizeof($results) == 0 || !$results){
-			throw new Exception("Invalid tool ID", 400);
+			return null;
 		}
         
         return new Tool($results[0]);

@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../models/Observation.php";
+
 /**
 * @SWG\Get(
 *     path="/observations",
@@ -99,9 +101,10 @@ $app->get('/observation/{id}', function ($request, $response, $args) {
 */
 
 $app->post('/observation', function ($request, $response, $args) {
+    $body = $request->getParsedBody();
     
+    $observation = Observation::create($body);
+    $output = new Response($observation);
     
-    
-    $out = new Response($name);
-    return $response->getBody()->write(json_encode($out));
+    return $response->getBody()->write(json_encode($output));
 });

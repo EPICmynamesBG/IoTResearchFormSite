@@ -72,27 +72,24 @@ class Device {
         return Device::getById($dev_id);
     }
     
-//    public static function search($text) {
-//        
-//        $db = DB::getInstance();
-//        $results = $db->select('Device','*',[
-//            'Manufacturer[~]' => $text,
-//            ['OR' => ['Model[~]' => $text]],
-//            ['OR' => ['Version[~]' => $text]],
-//            ['OR' => ['Year_manufactured[~]' => $text]]
-//        ]);
-//        
-//        if (sizeof($results) == 0 || !$results){
-//            return array();
-//        }
-//        $devices = array();
-//        for ($i=0; $i < sizeof($results); $i++){
-//            $d = new Device($results[$i]);
-//            array_push($devices, $d);
-//		}
-//        
-//        return $devices;
-//    }
+    public static function findOrCreate($data) {
+        
+        $db = DB::getInstance();
+        $results = $db->select('Device','*',[
+            "AND" => [
+                'Manufacturer[~]' => $data['manufacturer'],
+                'Model[~]' => $data['model']
+            ]
+        ]);
+        
+        if (!$results || sizeof($results) != 1){
+            if (sizeof($results) > 1){
+                throw new Exception("Multiple devices of same name exist", 500);
+            }
+            return Device::create($data['manufacturer'], $data['model'], $data['version'], $data['year_manufactured']);
+        }
+        return new Device($results[0]);
+    }
     
     public static function getById($deviceId) {
         $db = DB::getInstance();
@@ -101,7 +98,7 @@ class Device {
         ]);
         
         if (sizeof($results) == 0 || !$results){
-			throw new Exception("Invalid device ID", 400);
+			return null;
 		}
         
         return new Device($results[0]);

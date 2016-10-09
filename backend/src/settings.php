@@ -21,20 +21,18 @@ $c = [
 /**
  * @SWG\Definition(
  * 	    definition="Error",
- * 		required={"status", "error", "message"},
+ * 		required={"status", "message"},
  *		@SWG\Property(property="status", type="integer"),
- *		@SWG\Property(property="error", type="boolean"),
  *		@SWG\Property(property="msg", type="string"),
  * 	 )
 */
 $c['errorHandler'] = function ($c) {
     return function ($request, $response, $exception) use ($c) {
         $data = [
-            'status' => $exception->getCode(),
-            'error' => true,
+            'status' => $exception->getCode() == 0 ? 500:$exception->getCode(),
             'msg' => $exception->getMessage()
         ];
-        return $c['response']->withStatus($exception->getCode())
+        return $c['response']->withStatus($data['status'])
                              ->withHeader('Content-Type', 'application/json')
                              ->write(json_encode($data));
     };

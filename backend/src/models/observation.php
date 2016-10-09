@@ -1,10 +1,15 @@
 <?php
 
+require_once "Category.php";
+require_once "Device.php";
+require_once "Tool.php";
+require_once "User.php";
 /**
  * @SWG\Definition(
  *  required={
  *      "id",
  *      "user_1",
+ *      "device",
  *      "categories",
  *      "tool",
  *      "tool_params",
@@ -32,6 +37,12 @@ class Observation implements JsonSerializable {
      * @var User
      */
     public $user_2;
+    
+    /**
+     * @SWG\Property()
+     * @var Device
+     */
+    public $device;
     
     /**
      * @SWG\Property()
@@ -77,6 +88,7 @@ class Observation implements JsonSerializable {
         } else {
             $this->user_2 = null;
         }
+        $this->device = Device::getById($data['Device']);
         $this->categories = Category::categoriesFromString($data['Categories']);
         $this->tool = Tool::getById($data['Tool']);
         $this->tool_params = $data['Tool_parameters'];
@@ -104,6 +116,7 @@ class Observation implements JsonSerializable {
         }
         
         $arr['users'] = $users;
+        $arr['device'] = $this->device;
         $arr['tool'] = $this->tool;
         $arr['toolParams'] = $this->tool_params;
         $arr['observations'] = $this->observations;
@@ -115,10 +128,10 @@ class Observation implements JsonSerializable {
     }
         
     
-    const $delimiter = ",";
+    const delimiter = ",";
     private static function fileArrayFromString($fileStr) {
         $fileStr = str_replace(" ", "", $fileStr);
-        $urls = explode($delimiter, $fileStr);
+        $urls = explode(self::delimiter, $fileStr);
         return $urls;
     }
     
@@ -127,7 +140,7 @@ class Observation implements JsonSerializable {
         for ($i=0; $i < sizeof($fileArr); $i++){
             $obj = $fileArr[$i];
             
-            $str += $obj . $delimiter . " ";
+            $str += $obj . self::delimiter . " ";
 		}
         $str = substr($str, 0, -2);
         return $str;
@@ -136,6 +149,9 @@ class Observation implements JsonSerializable {
     public static function create($data) {
         if (!isset($data['user_1'])){
             throw new Exception("Missing parameter: Observation::user_1", 400);
+        }
+        if (!isset($data['device'])){
+            throw new Exception("Missing parameter: Observation::device", 400);
         }
         if (!isset($data['categories'])){
             throw new Exception("Missing parameter: Observation::categories", 400);
@@ -150,24 +166,38 @@ class Observation implements JsonSerializable {
             throw new Exception("Missing parameter: Observation::observations", 400);
         }
         
-        $user1 = null, $user2 = null;
+        $user1 = null;
+        $user2 = null;
+        $user1_id = null;
+        $user2_id = null;
         if (gettype($data['user_1']) == 'string') {
-            $user1 = User::getById($data['user1']); 
+            $user1 = User::getById($data['user1']);
+            $user1_id = $user1->id;
         } else if (gettype($data['user_1']) == 'array') {
             $user1 = User::findOrCreate($data['user_1']);
+            $user1_id = $user1->id;
         } else {
             throw new Exception("Invalid data type for Observation:User_1.", 400);
         }
         
+        
         if (isset($data['user_2'])){
             if (gettype($data['user_2']) == 'string') {
                 $user2 = User::getById($data['user2']); 
+                $user2_id = $user2->id;
             } else if (gettype($data['user_2']) == 'array') {
                 $user2 = User::findOrCreate($data['user_2']);
+                $user2_id = $user2->id;
             } else {
                 throw new Exception("Invalid data type for Observation:User_2.", 400);
             }
         }
+        
+        $device = Device::getById($data['device']);
+        if ($device == null) {
+            $device = Device::findOrCreate($data['device']);
+        }
+        
         //convert categories to array
         $catArr = array();
         for ($i = 0; $i < sizeof($data['categories']); $i++){
@@ -177,6 +207,9 @@ class Observation implements JsonSerializable {
         $categories = Category::categoriesStringFromArray($catArr);
         
         $tool = Tool::getById($data['tool']);
+        if ($tool == null) {
+            $tool = Tool::findOrCreate($data['tool']);
+        }
         $toolParams = $data['toolParams'];
         $obs = $data['observations'];
         $implications = null;
@@ -189,10 +222,11 @@ class Observation implements JsonSerializable {
         }
         
         $observation = array(
-            'User_1' => $user1,
-            'User_2' => $user2,
+            'User_1' => $user1_id,
+            'User_2' => $user2_id,
+            'Device' => $device->id,
             'Categories' => $categories,
-            'Tool' => $tool,
+            'Tool' => $tool->id,
             'Tool_parameters' => $toolParams,
             'Observations' => $obs,
             'Implications' => $implications,
@@ -212,7 +246,7 @@ class Observation implements JsonSerializable {
         ]);
         
         if (sizeof($results) == 0 || !$results){
-			throw new Exception("Invalid observation ID", 400);
+			throw new Exception("Unable to find observation with ID ". $observationID, 400);
 		}
         
         return new Observation($results[0]);
@@ -220,7 +254,7 @@ class Observation implements JsonSerializable {
     
     public static function getAll() {
         $db = DB::getInstance();
-        $results = $db->select('Tool','*',[]);
+        $results = $db->select('Observation','*',[]);
         
         if (sizeof($results) == 0 || !$results){
 			return array();

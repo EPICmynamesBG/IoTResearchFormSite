@@ -47,7 +47,7 @@ class Category {
         ]);
         
         if (sizeof($results) == 0 || !$results){
-			throw new Exception("Invalid category ID", 400);
+			return null;
 		}
         
         return new Category($results[0]);
@@ -69,10 +69,10 @@ class Category {
         return $categories;
     }
     
-    const $delimiter = ",";
+    const delimiter = ",";
     public static function categoriesFromString($catStr) {
         $catStr = str_replace(" ", "", $catStr);
-        $categories = explode($delimiter, $catStr);
+        $categories = explode(self::delimiter, $catStr);
         
         $response = array();
         for ($i=0; $i < sizeof($categories); $i++){
@@ -89,8 +89,7 @@ class Category {
             if (gettype($obj) == "string"){
                 $obj = Category::getById($obj);
             }
-            
-            $str += $obj->name . $delimiter . " ";
+            $str .= $obj->id . self::delimiter . " ";
 		}
         $str = substr($str, 0, -2);
         return $str;

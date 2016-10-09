@@ -81,11 +81,14 @@ class User {
         
         $db = DB::getInstance();
         $results = $db->select('User','*',[
-            'First_name' => $fName,
-            'Last_name' => $lName
+            "AND" => [
+                'First_name[~]' => $fName,
+                'Last_name[~]' => $lName
+            ]
         ]);
         
         $user = null;
+        
         if (sizeof($results) != 1 || !$results){
             $user = User::create($fName, $lName);
         } else {
@@ -105,7 +108,7 @@ class User {
         ]);
         
         if (sizeof($results) == 0 || !$results){
-			throw new Exception("Invalid user ID", 400);
+			return null;
 		}
         
         return new User($results[0]);
