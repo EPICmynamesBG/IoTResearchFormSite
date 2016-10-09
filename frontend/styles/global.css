@@ -20,9 +20,11 @@ body {
 input,
 textarea,
 button,
+div[role="button"],
 input:focus,
 textarea:focus,
-button:focus {
+button:focus,
+div[role="button"]:focus {
     outline: none;
     box-shadow: none;
     border: none;

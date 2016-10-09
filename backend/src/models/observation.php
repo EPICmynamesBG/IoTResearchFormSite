@@ -120,9 +120,7 @@ class Observation implements JsonSerializable {
         $arr['tool'] = $this->tool;
         $arr['toolParams'] = $this->tool_params;
         $arr['observations'] = $this->observations;
-        if (isset($this->implications)){
-            $arr['implications'] = $this->implications;
-        }
+        $arr['implications'] = $this->implications;
         $arr['files'] = $this->files;
         return $arr;
     }
@@ -139,8 +137,7 @@ class Observation implements JsonSerializable {
         $str = "";
         for ($i=0; $i < sizeof($fileArr); $i++){
             $obj = $fileArr[$i];
-            
-            $str += $obj . self::delimiter . " ";
+            $str .= $obj . self::delimiter . " ";
 		}
         $str = substr($str, 0, -2);
         return $str;
