@@ -1,11 +1,12 @@
 modal,
-div[modal] {
+category-modal,
+alert-modal {
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: transparent;
     z-index: 999;
 }
 
@@ -37,4 +38,8 @@ div[modal] {
 .modal-block > p > i {
     font-weight: 400;
     font-style: normal;
+}
+
+.modal-block .text-block {
+    white-space: pre-wrap;
 }

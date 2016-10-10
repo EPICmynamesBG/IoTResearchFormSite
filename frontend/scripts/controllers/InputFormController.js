@@ -1,5 +1,10 @@
 app.controller('InputFormController', ['$scope', '$state', 'API', function ($scope, $state, API) {
 
+    $scope.showAlertModal = false;
+    $scope.showCategoryModal = false;
+    $scope.viewCategory = null;
+    $scope.alert = null;
+    
     var initialize = function () {
         $scope.categories = [];
         $scope.input = {};
@@ -40,6 +45,7 @@ app.controller('InputFormController', ['$scope', '$state', 'API', function ($sco
         .then(function (data) {
             $scope.categories = data.data.data;
         }, function (error) {
+            $scope.showAlert("Error", error.message);
             console.log(error);
         });
 
@@ -47,12 +53,33 @@ app.controller('InputFormController', ['$scope', '$state', 'API', function ($sco
         $scope.input.files = $scope.urlEntries;
         API.observation.create($scope.input)
             .then(function (data) {
-                console.log(data);
-                alert("Success");
+                $scope.showAlert("Success", "The observation has been recorded");
                 initialize();
             }, function (error) {
+                $scope.showAlert("Error", error.message);
                 console.log(error);
             });
-    }
+    };
+    
+    $scope.showCategoryInfo = function(category){
+        $scope.viewCategory = category;
+        $scope.showCategoryModal = true;
+    };
+    
+    $scope.hideCategoryModal = function() {
+        $scope.showCategoryModal = false;
+    };
+    
+    $scope.showAlert = function(header, body) {
+        $scope.alert = {
+            'header': header,
+            'body': body
+        };
+        $scope.showAlertModal = true;
+    };
+    
+    $scope.hideAlert = function() {
+        $scope.showAlertModal = false;
+    };
 
 }]);
