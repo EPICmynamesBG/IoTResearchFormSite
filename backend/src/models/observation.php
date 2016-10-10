@@ -168,7 +168,7 @@ class Observation implements JsonSerializable {
         $user1_id = null;
         $user2_id = null;
         if (gettype($data['user_1']) == 'string') {
-            $user1 = User::getById($data['user1']);
+            $user1 = User::getById($data['user_1']);
             $user1_id = $user1->id;
         } else if (gettype($data['user_1']) == 'array') {
             $user1 = User::findOrCreate($data['user_1']);
@@ -180,7 +180,7 @@ class Observation implements JsonSerializable {
         
         if (isset($data['user_2'])){
             if (gettype($data['user_2']) == 'string') {
-                $user2 = User::getById($data['user2']); 
+                $user2 = User::getById($data['user_2']); 
                 $user2_id = $user2->id;
             } else if (gettype($data['user_2']) == 'array') {
                 $user2 = User::findOrCreate($data['user_2']);
@@ -232,6 +232,9 @@ class Observation implements JsonSerializable {
         
         $db = DB::getInstance();
         $obs_id = $db->insert("Observation", $observation);
+        if ($obs_id == 0){
+            throw new Exception("Observation creation error", 500);
+        }
         
         return Observation::getById($obs_id);
     }

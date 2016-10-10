@@ -2,32 +2,54 @@
     <form name="form" novalidate>
         <div class="input-block">
             <h3>Investigator 1<span class="required">*</span></h3>
-            <div class="input-field">
-                <select>
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                </select>
-                <label>Materialize Select</label>
+            <div class="row"  ng-hide="userList.length == 0">
+                <div class="input-field col s5 dropdown-wrapper">
+                    <select ng-model="selectUser1">
+                        <option value="" disabled selected>Choose a User</option>
+                        <option ng-repeat="user in userList" value="{{user.id}}">{{user.full_name}}</option>
+                    </select>
+                    <label>User Select</label>
+                </div>
             </div>
-            <br />
-            <br />
-            <input class="custom-text-input" type="text" name="user_1_first" ng-model="input.user_1.first_name" required="true" placeholder="First Name" autocomplete="off" />
-            <input class="custom-text-input" type="text" name="user_1_last" ng-model="input.user_1.last_name" required="true" placeholder="Last Name" autocomplete="off" />
+            <div class="or-block" ng-hide="userList.length == 0">
+            </div>
+            <input class="custom-text-input" type="text" name="user_1_first" ng-model="input.user_1.first_name" placeholder="First Name" autocomplete="off" ng-disabled="selectUser1"  ng-required="!selectUser1" />
+            <input class="custom-text-input" type="text" name="user_1_last" ng-model="input.user_1.last_name" placeholder="Last Name" autocomplete="off" ng-disabled="selectUser1" ng-required="!selectUser1" />
         </div>
         <div class="input-block">
             <h3>Investigator 2 <span class="optional">(Optional)</span>
             </h3>
-            <input class="custom-text-input" type="text" name="user_2_first" ng-model="input.user_2.first_name" placeholder="First Name" autocomplete="off" />
-            <input class="custom-text-input" type="text" name="user_2_last" ng-model="input.user_2.last_name" placeholder="Last Name" autocomplete="off" />
+            <div class="row"  ng-hide="userList.length == 0">
+                <div class="input-field col s5 dropdown-wrapper">
+                    <select ng-model="selectUser2">
+                        <option value="" disabled selected>Choose a User</option>
+                        <option ng-repeat="user in userList" value="{{user.id}}">{{user.full_name}}</option>
+                    </select>
+                    <label>User Select</label>
+                </div>
+            </div>
+            <div class="or-block"  ng-hide="userList.length == 0">
+            </div>
+            <input class="custom-text-input" type="text" name="user_2_first" ng-model="input.user_2.first_name" placeholder="First Name" autocomplete="off" ng-disabled="selectUser2" />
+            <input class="custom-text-input" type="text" name="user_2_last" ng-model="input.user_2.last_name" placeholder="Last Name" autocomplete="off" ng-disabled="selectUser2" />
         </div>
         <div class="input-block">
             <h3>Device Info<span class="required">*</span></h3>
-            <input class="custom-text-input" type="text" name="device_man" ng-model="input.device.manufacturer" placeholder="Manufacturer" required="true" autocomplete="off" />
-            <input class="custom-text-input" type="text" name="device_model" ng-model="input.device.model" placeholder="Model" required="true" autocomplete="off" />
-            <input class="custom-text-input" type="text" name="device_version" ng-model="input.device.version" placeholder="Version" autocomplete="off" />
-            <input class="custom-text-input" type="text" name="device_year" ng-model="input.device.year_manufactured" placeholder="Year Manufactured" autocomplete="off" />
+            <div class="row"  ng-hide="deviceList.length == 0">
+                <div class="input-field col s5 dropdown-wrapper">
+                    <select ng-model="selectDevice">
+                        <option value="" selected disabled>Choose your option</option>
+                        <option ng-repeat="device in deviceList" value="{{device.id}}">{{device.manufacturer}} {{device.model}}</option>
+                    </select>
+                    <label>Device Select</label>
+                </div>
+            </div>
+            <div class="or-block" ng-hide="deviceList.length == 0">
+            </div>
+            <input class="custom-text-input" type="text" name="device_man" ng-model="input.device.manufacturer" placeholder="Manufacturer" autocomplete="off" ng-disabled="selectDevice" ng-required="!selectDevice" />
+            <input class="custom-text-input" type="text" name="device_model" ng-model="input.device.model" placeholder="Model" autocomplete="off" ng-disabled="selectDevice" ng-required="!selectDevice" />
+            <input class="custom-text-input" type="text" name="device_version" ng-model="input.device.version" placeholder="Version" autocomplete="off" ng-disabled="selectDevice"/>
+            <input class="custom-text-input" type="text" name="device_year" ng-model="input.device.year_manufactured" placeholder="Year Manufactured" autocomplete="off" ng-disabled="selectDevice" />
         </div>
         <div class="input-block">
             <h3>OWASP Category<span class="required">*</span></h3>
@@ -39,7 +61,18 @@
         </div>
         <div class="input-block">
             <h3>Testing Tool<span class="required">*</span></h3>
-            <input class="custom-text-input" type="text" name="tool" ng-model="input.tool.name" placeholder="Tool Name" autocomplete="off" required="true" />
+            <div class="row" ng-hide="toolList.length == 0">
+                <div class="input-field col s5 dropdown-wrapper">
+                    <select ng-model="selectTool">
+                        <option value="" disabled selected>Choose your option</option>
+                        <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
+                    </select>
+                    <label>Tool Select</label>
+                </div>
+            </div>
+            <div class="or-block" ng-hide="toolList.length == 0">
+            </div>
+            <input class="custom-text-input" type="text" name="tool" ng-model="input.tool.name" placeholder="Tool Name" autocomplete="off" ng-required="!selectTool" ng-disabled="selectTool" />
             <div class="row">
                 <div class="input-field col s12">
                     <p class="textarea-label">All of the tools used will have many variable or parameters that can be configured. This may be through check boxes on a GUI interface or through switches. If you are using a tool with a GUI, provide a bullet list of all the variables you used. If working at the CLI, enter the syntax you used. For example, if you were wanting to determine a device's operating system you would execute the following command and switches:</p>
@@ -92,3 +125,18 @@
 
 <alert-modal ng-show="showAlertModal"></alert-modal>
 <category-modal ng-show="showCategoryModal"></category-modal>
+<div class="loading" ng-show="loading">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+        </div>
+    </div>
+</div>

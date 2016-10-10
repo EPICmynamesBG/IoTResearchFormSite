@@ -79,6 +79,9 @@ class User {
             throw new Exception("Missing requried field: User::last_name", 400);
         }
         
+        $fName = trim($fName);
+        $lName = trim($lName);
+        
         $db = DB::getInstance();
         $results = $db->select('User','*',[
             "AND" => [
@@ -90,6 +93,9 @@ class User {
         $user = null;
         
         if (sizeof($results) != 1 || !$results){
+            if (sizeof($results) > 1){
+                throw new Exception("Multiple instances of the user found", 500);
+            }
             $user = User::create($fName, $lName);
         } else {
             $user = new User($results[0]);

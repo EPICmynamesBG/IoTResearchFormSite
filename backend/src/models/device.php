@@ -86,7 +86,15 @@ class Device {
             if (sizeof($results) > 1){
                 throw new Exception("Multiple devices of same name exist", 500);
             }
-            return Device::create($data['manufacturer'], $data['model'], $data['version'], $data['year_manufactured']);
+            $version = null;
+            $year_manufactured = null;
+            if (isset($data['version'])){
+                $version = $data['version'];
+            } 
+            if (isset($data['year_manufactured'])){
+                $year_manufactured = $data['year_manufactured'];
+            }
+            return Device::create($data['manufacturer'], $data['model'], $version, $year_manufactured);
         }
         return new Device($results[0]);
     }

@@ -106,6 +106,7 @@ div[ui-grid] {
 
 .grid-btn {
     font-size: 14px;
+    padding: 0 2em;
 }
 
 @media screen and (max-width: 630px) {
@@ -116,7 +117,7 @@ div[ui-grid] {
     }
     
     .grid-btn {
-        font-size: 0.7em;
+        font-size: 0.7em !important;
         width: 75px;
         padding: 2px 0px;
     }

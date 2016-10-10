@@ -3,8 +3,10 @@ app.factory('API', ['config', '$http', function (config, $http) {
     var factory = {};
 
     var observation = {};
-
     var category = {};
+    var user = {};
+    var device = {};
+    var tool = {};
 
     observation.getAll = function () {
         return $http({
@@ -48,10 +50,34 @@ app.factory('API', ['config', '$http', function (config, $http) {
             url: config.url + '/categories'
         });
     };
+    
+    user.getAll = function() {
+        return $http({
+            method: 'GET',
+            url: config.url + '/users'
+        });
+    };
+    
+    device.getAll = function() {
+        return $http({
+            method: 'GET',
+            url: config.url + '/devices'
+        });
+    };
+    
+    tool.getAll = function() {
+        return $http({
+            method: 'GET',
+            url: config.url + '/tools'
+        });
+    };
 
 
     factory.observation = observation;
     factory.category = category;
+    factory.user = user;
+    factory.device = device;
+    factory.tool = tool;
     return factory;
 
 }]);
