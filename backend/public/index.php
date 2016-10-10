@@ -28,9 +28,9 @@ if (PHP_SAPI == 'cli-server') {
     }
 }
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -46,6 +46,9 @@ require __DIR__ . '/../src/util/response.php';
 
 $app->add(function($request, $response, $next) {
     $response = $response->withHeader('Content-Type', 'application/json');
+//    $response = $response->withHeader('Access-Control-Allow-Origin', 'http://bgroff-pi2.dhcp.bsu.edu');
+//    $response = $response->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization');
+//    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     return $next($request, $response);
 });
 

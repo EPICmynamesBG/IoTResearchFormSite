@@ -174,7 +174,8 @@ button.btn[type="submit"] {
 }
 
 .dropdown-wrapper {
-    min-width: 400px;
+    min-width: 350px;
+    max-width: 500px;
 }
 
 @media screen and (max-width:550px) {

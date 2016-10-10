@@ -1,11 +1,22 @@
 #grid-body {
-    height: 100%;
+/*    height: 100%;*/
 }
 
 div[ui-grid] {
     border: none;
     width: 100%;
     height: 100%;
+}
+
+h3.title {
+    font-size: 2.6rem;
+    transition-duration: 0.3s;
+}
+
+@media screen and (max-width: 550px) {
+    h3.title {
+        font-size: 1.8rem;
+    }
 }
 
 .rel {
@@ -53,7 +64,7 @@ div[ui-grid] {
     margin: 0px;
     padding: 0px;
     margin-left: 4px;
-    width: calc(100% - 20px);
+    width: calc(100% - 25px);
 }
 
 .observation-grid .ui-grid-header-cell .ui-grid-column-menu-button {
@@ -101,25 +112,59 @@ div[ui-grid] {
 }
 
 .observation-grid .ui-grid-cell-contents {
-    line-height: 40px;
+    line-height: 36px;
 }
 
 .grid-btn {
     font-size: 14px;
     padding: 0 2em;
+    margin: 2px;
+    position: relative;
+}
+
+.grid-btn:active {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.ui-grid-menu {
+    top: -50px;
+}
+
+.ui-grid-menu .ui-grid-menu-inner {
+    border: none;
+    border-radius: 2px;
+    background-color: #fafafa;
+}
+
+.ui-grid-menu .ui-grid-menu-inner ul li button {
+    transition-duration: 0.3s;
+}
+
+.ui-grid-menu .ui-grid-menu-inner ul li button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+}
+
+.ui-grid-menu .ui-grid-menu-inner ul li button:active {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.ui-grid-menu .ui-grid-menu-inner ul li button:focus {
+    box-shadow: none;
+}
+
+.ui-grid-menu .ui-grid-menu-inner ul li button.ui-grid-menu-item-active {
+    background-color: #b0bec5;
 }
 
 @media screen and (max-width: 630px) {
     .observation-grid .ui-grid-header-cell:first-child,
     .observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row div[role="row"] div:first-child {
         width: 80px !important;
-        
     }
-    
     .grid-btn {
         font-size: 0.7em !important;
-        width: 75px;
+        width: 76px;
         padding: 2px 0px;
     }
-    
 }
