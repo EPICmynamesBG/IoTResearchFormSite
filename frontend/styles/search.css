@@ -1,0 +1,124 @@
+#grid-body {
+    height: 100%;
+}
+
+div[ui-grid] {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+.rel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.observation-grid {
+    height: 100% !important;
+}
+
+.observation-grid .ui-grid-top-panel {
+    background: none;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: 0px 2px 1px -2px rgba(2, 136, 209, 0.3);
+    z-index: 2;
+}
+
+.observation-grid .ui-grid-filter-input {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 1em;
+    font-size: 1em;
+    padding: 5px !important;
+    font-weight: 300;
+    margin-left: -5px !important;
+}
+
+.observation-grid .ui-grid-header-cell .ui-grid-cell-contents {
+    display: inline-block;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 4px;
+    width: calc(100% - 20px);
+}
+
+.observation-grid .ui-grid-header-cell .ui-grid-column-menu-button {
+    display: inline-block;
+    position: relative;
+    width: 10px;
+    margin: 0px;
+    margin-right: 4px;
+    top: 6px;
+}
+
+.observation-grid .ui-grid-filter-button {
+    display: none;
+}
+
+.observation-grid .ui-grid-header-cell:first-child {
+    background-color: transparent;
+    border: none;
+    width: 140px !important;
+    min-width: inherit;
+    max-width: inherit;
+}
+
+.observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row div[role="row"] div:first-child {
+    width: 140px !important;
+    min-width: inherit;
+    max-width: inherit;
+    border: none;
+}
+
+.observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row div[role="row"] div {
+    background-color: transparent;
+}
+
+.observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row:nth-child(odd) {
+    background-color: #b3e5fc;
+}
+
+.observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row:nth-child(even) {
+    background-color: #e1f5fe;
+}
+
+.observation-grid .ui-grid-header-cell:first-child > div[role="columnheader"] {
+    display: none;
+}
+
+.observation-grid .ui-grid-cell-contents {
+    line-height: 40px;
+}
+
+.grid-btn {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 630px) {
+    .observation-grid .ui-grid-header-cell:first-child,
+    .observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row div[role="row"] div:first-child {
+        width: 80px !important;
+        
+    }
+    
+    .grid-btn {
+        font-size: 0.7em;
+        width: 75px;
+        padding: 2px 0px;
+    }
+    
+}

@@ -1,6 +1,22 @@
-<div id="body">
+<div id="grid-body">
     <div>
-        
+
     </div>
-    <div ui-grid="{ data: parsedObservations }" class="observation-grid"></div>
+    <div class="loading" ng-show="loading">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-grid="gridOptions" ng-hide="parsedObservations.length == 0" external-scopes="clickHandler" class="grid observation-grid"></div>
 </div>
+<modal ng-show="showModal"></modal>

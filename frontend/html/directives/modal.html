@@ -1,19 +1,46 @@
-<!--
-<div class='ng-modal' ng-show='show'>
-    <div class='ng-modal-overlay' ng-click='hideModal()'></div>
-    <div class='ng-modal-dialog' ng-style='dialogStyle'>
-        <div class='ng-modal-close' ng-click='hideModal()'>X</div>
-        <div class='ng-modal-dialog-content' ng-transclude></div>
-    </div>
-</div>-->
-
-
-<div id="modal1" class="modal modal-fixed-footer">
+<div id="demoModal" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <div class="modal-header">
+            <h4>Observation {{modalItem.id}}</h4>
+        </div>
+        <div class="modal-block">
+            <h5>User(s)</h5>
+            <p>{{modalItem.user_1.full_name}}</p>
+            <p ng-show="modalItem.user_2">{{modalItem.user_2.full_name}}</p>
+        </div>
+        <div class="modal-block">
+            <h5>Device</h5>
+            <p><i>Manufacturer:</i> {{modalItem.device.manufacturer}}</p>
+            <p><i>Model:</i> {{modalItem.device.model}}</p>
+            <p ng-show="modalItem.device.version"><i>Version:</i> {{modalItem.device.version}}</p>
+            <p ng-show="modalItem.device.year_manufactured"><i>Year Manufactured:</i> {{modalItem.device.year_manufactured}}</p>
+        </div>
+        <div class="modal-block">
+            <h5>Categories</h5>
+            <p ng-repeat="category in modalItem.categories"><i>{{category.id}}:</i> {{category.name}}</p>
+        </div>
+        <div class="modal-block">
+            <h5>Tool</h5>
+            <p><b>{{modalItem.tool.name}}</b></p>
+            <p><i>Tool Parameters:</i></p>
+            <p class="text-block">{{modalItem.tool_params}}</p>
+        </div>
+        <div class="modal-block">
+            <h5>Observations</h5>
+            <p class="text-block">{{modalItem.observations}}</p>
+        </div>
+        <div class="modal-block">
+            <h5>Implications</h5>
+            <p class="text-block" ng-show="modalItem.implications">{{modalItem.implications}}</p>
+            <p class="text-block" ng-show="!modalItem.implications"><i>None</i></p>
+        </div>
+        <div class="modal-block">
+            <h5>Files</h5>
+            <p ng-repeat="file in modalItem.files" ><a href="{{file}}" target="_blank">{{file}}</a></p>
+            <p ng-show="!modalItem.files"><i>None</i></p>
+        </div>
     </div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        <a class=" modal-action modal-close waves-effect waves-blue btn-flat" ng-click='hideModal()'>Close</a>
     </div>
 </div>
