@@ -1,6 +1,6 @@
 var app = angular.module('app', ['ui.grid', 'ui.router']);
 
-var prodURL = 'http://bgroff-pi2.dhcp.bsu.edu/IoTResearch/backend/public';
+var prodURL = 'http://bgroff-pi2.dhcp.bsu.edu/backend/public';
 var devURL = 'http://localhost:8888/backend/public';
 
 app.constant('config', {
