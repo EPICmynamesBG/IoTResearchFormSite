@@ -46,9 +46,6 @@ require __DIR__ . '/../src/util/response.php';
 
 $app->add(function($request, $response, $next) {
     $response = $response->withHeader('Content-Type', 'application/json');
-//    $response = $response->withHeader('Access-Control-Allow-Origin', 'http://bgroff-pi2.dhcp.bsu.edu');
-//    $response = $response->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization');
-//    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     return $next($request, $response);
 });
 
