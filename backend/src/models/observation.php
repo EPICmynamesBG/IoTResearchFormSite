@@ -125,6 +125,29 @@ class Observation implements JsonSerializable {
         return $arr;
     }
         
+    function toArray() {
+        $arr = array();
+        $arr['id'] = $this->id;
+        $arr['user1'] = $this->user_1->full_name;
+        if (isset($this->user_2)){
+            $arr['user2'] = $this->user_2->full_name;
+        } else {
+            $arr['user2'] = "";
+        }
+        $arr['device_manufacturer'] = $this->device->manufacturer;
+        $arr['device_model'] = $this->device->model;
+        $arr['device_version'] = $this->device->version;
+        $arr['device_year_manufactured'] = $this->device->year_manufactured;
+        
+        $arr['categories'] = Category::categoriesStringFromArray($this->categories);
+        
+        $arr['tool'] = $this->tool->name;
+        $arr['toolParams'] = $this->tool_params;
+        $arr['observations'] = $this->observations;
+        $arr['implications'] = $this->implications;
+        $arr['files'] = Observation::fileStringFromArray($this->files);
+        return $arr;
+    }
     
     const delimiter = ",";
     private static function fileArrayFromString($fileStr) {

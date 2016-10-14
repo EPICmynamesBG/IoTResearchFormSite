@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../models/Observation.php";
+require_once __DIR__ . "/../util/helper.php";
 
 /**
 * @SWG\Get(
@@ -33,7 +34,35 @@ $app->get('/observations', function ($request, $response, $args) {
 
 /**
 * @SWG\Get(
-*     path="/books/{id}",
+*     path="/observations/download",
+*     summary="Download CSV",
+*     description="Get all Observations in a CSV file",
+*     tags={"Observation"},
+*     @SWG\Response(
+*         response=200,
+*         description="Success",
+*         @SWG\Schema(
+*             ref="#/definitions/ArrayObservationSuccess"
+*         )
+*     ),
+*     @SWG\Response(
+*         response="default",
+*         description="Error",
+*         @SWG\Schema(
+*             ref="#/definitions/Error"
+*         )
+*     )
+* )
+*/
+
+$app->get('/observations/download', function ($request, $response, $args) {
+    $observations = Observation::getAll();
+    return $response->getBody()->write(Helper::OutputToCSV($observations));
+});
+
+/**
+* @SWG\Get(
+*     path="/observations/{id}",
 *     summary="Get by Id",
 *     description="Get an Observation by Id",
 *     tags={"Observation"},
