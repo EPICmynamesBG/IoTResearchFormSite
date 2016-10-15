@@ -1,6 +1,15 @@
 <div id="grid-body">
     <div>
         <h3 class="title">Internet of Things Security Research Database</h3>
+        <div class="fixed-action-btn horizontal click-to-toggle search-menu" ng-hide="parsedObservations.length == 0">
+            <a class="btn-floating btn-large indigo lighten-1" title="Menu">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li title="Download CSV"><a class="btn-floating green lighten-1 waves-effect" href="{{$root.config.url}}/observations/download" target="_blank" ng-click="hideMenu()"><i class="material-icons">file_download</i></a></li>
+            </ul>
+        </div>
+<!--        <a class="waves-effect waves-light btn indigo lighten-1" href="{{$root.config.url}}/observations/download" target="_blank" ng-hide="parsedObservations.length == 0"><i class="small material-icons left">file_download</i> Download as CSV</a>-->
         <h5 ng-show="parsedObservations.length == 0"><i>There is currently no data</i></h5>
     </div>
     <div class="loading" ng-show="loading">

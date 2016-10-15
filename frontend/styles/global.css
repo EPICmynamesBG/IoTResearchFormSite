@@ -128,7 +128,7 @@ header.nav > .nav-button.current {
 
 div[ui-view] {
     padding: 30px;
-    height: calc(100% - 100px);
+    height: calc(100% - 100px - 70px);
     overflow-y: auto;
     display: block;
 }
@@ -152,6 +152,10 @@ div[ui-view] {
     }
     div[ui-view] {
         padding: 10px;
-        height: calc(100% - 60px);
+        height: calc(100% - 60px - 70px);
     }
+}
+
+footer.page-footer {
+    margin-top: 0;
 }

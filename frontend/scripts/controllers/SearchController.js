@@ -113,6 +113,10 @@ app.controller('SearchController', ['$scope', '$state', 'API', function ($scope,
 
     $scope.hideModal = function () {
         $scope.showModal = false;
-    }
+    };
+    
+    $scope.hideMenu = function() {
+        $('.fixed-action-btn').closeFAB();
+    };
 
 }]);

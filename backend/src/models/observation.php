@@ -107,7 +107,6 @@ class Observation implements JsonSerializable {
     
     function jsonSerialize() {
         $arr = array();
-        $arr['id'] = $this->id;
         
         $users = array();
         array_push($users, $this->user_1);

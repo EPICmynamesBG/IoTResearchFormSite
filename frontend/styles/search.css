@@ -157,6 +157,10 @@ h3.title {
     background-color: #b0bec5;
 }
 
+.search-menu {
+    bottom: 90px;
+}
+
 @media screen and (max-width: 630px) {
     .observation-grid .ui-grid-header-cell:first-child,
     .observation-grid div[role="rowgroup"] > .ui-grid-canvas > .ui-grid-row div[role="row"] div:first-child {

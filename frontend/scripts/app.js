@@ -8,6 +8,10 @@ app.constant('config', {
     url: devURL
 });
 
+app.run(function($rootScope, config) {
+    $rootScope.config = config;
+});
+
 
 /* --- Routing --- */
 
