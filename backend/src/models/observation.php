@@ -108,6 +108,7 @@ class Observation implements JsonSerializable {
     function jsonSerialize() {
         $arr = array();
         
+        $arr['id'] = $this->id;
         $users = array();
         array_push($users, $this->user_1);
         if (isset($this->user_2)){
@@ -126,7 +127,7 @@ class Observation implements JsonSerializable {
         
     function toArray() {
         $arr = array();
-        $arr['id'] = $this->id;
+        
         $arr['user1'] = $this->user_1->full_name;
         if (isset($this->user_2)){
             $arr['user2'] = $this->user_2->full_name;
